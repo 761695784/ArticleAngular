@@ -1,0 +1,18 @@
+<!-- details du produit lors du clic sur le bouton voir details-->
+
+<div class="container">
+  <h2>Article Details</h2>
+  <div *ngIf="article">
+    <h3>{{ article.title }}</h3>
+    <p>{{ article.body }}</p>
+
+    <button  class="btn btn-danger">Supprimer</button>
+    <!-- (click)="deleteArticle(article.id)" -->
+    <button routerLink="/" class="btn btn-secondary">Retour à la liste</button>
+  </div>
+  <br>
+  <br>
+  <div *ngIf="!article">
+    <p>Loading...</p>
+  </div>
+</div>
