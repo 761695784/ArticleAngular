@@ -1,53 +1,15 @@
-// import { Component, OnInit } from '@angular/core';
-// import { ActivatedRoute } from '@angular/router';
-// import { ArticleService,Article } from '../services/article.service';
-// import { CommonModule } from '@angular/common';
-// import { FormsModule } from '@angular/forms';
-
-
-// @Component({
-//   selector: 'app-detail-article',
-//   standalone: true,
-//   imports: [CommonModule,FormsModule ],
-//   templateUrl: './detail-article.component.html',
-//   styleUrl: './detail-article.component.css'
-// })
-// export class DetailArticleComponent implements OnInit {
-
-//   articles: Article [] = [];
-
-//   constructor(
-//     private route: ActivatedRoute,
-//     private articleService: ArticleService
-//   ) { }
-
-//   article: Article | undefined;
-//   ngOnInit(): void {
-//     const id = +this.route.snapshot.paramMap.get('id')!;
-//     console.log('ID récupéré pour les détails :', id); // Vérifie l'ID récupéré
-//     this.articleService.getArticle(id).subscribe(data => {
-//       console.log('Données de l\'article :', data); // Vérifie les données reçues
-//       this.article = data;
-//     });
-
-
-//   }
-
-
-
-// }
-
 
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService, Article, Comment } from '../services/article.service';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-detail-article',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './detail-article.component.html',
   styleUrls: ['./detail-article.component.css']
 })
@@ -55,6 +17,7 @@ export class DetailArticleComponent implements OnInit {
 
   article: Article | undefined;
   comments: Comment[] = [];
+  isLocalArticle: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -65,7 +28,12 @@ export class DetailArticleComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id')!;
     this.articleService.getArticle(id).subscribe(data => {
       this.article = data;
-      this.loadComments(id);
+
+      // Vérifie si l'article est local ou provenant de JSONPlaceholder
+      this.isLocalArticle = !this.article.id || this.article.id > 1000; // Ajuste cette condition selon ton besoin
+      if (!this.isLocalArticle) {
+        this.loadComments(id);
+      }
     });
   }
 
@@ -75,6 +43,11 @@ export class DetailArticleComponent implements OnInit {
     });
   }
 
-  
-
+  deleteArticle(): void {
+    if (this.article) {
+      this.articleService.deleteArticle(this.article.id).subscribe(() => {
+        // Redirection ou message de succès
+      });
+    }
+  }
 }

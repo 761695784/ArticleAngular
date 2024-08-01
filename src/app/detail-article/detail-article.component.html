@@ -1,13 +1,9 @@
 
 <div class="container">
-  <h2>Article Details</h2>
   <div *ngIf="article">
     <h3>{{ article.title }}</h3>
     <p>{{ article.body }}</p>
-
-    <button class="btn btn-danger" >Supprimer</button>
-    <!-- (click)="deleteArticle(article.id)" -->
-    <button routerLink="/" class="btn btn-secondary">Retour à la liste</button>
+    <button routerLink="/" class="btn btn-outline-warning">Retour à la liste</button>
 
     <hr>
     <h4>Commentaires</h4>
@@ -19,8 +15,5 @@
         <p class="card-text">{{ comment.body }}</p>
       </div>
     </div>
-  </div>
-  <div *ngIf="!article">
-    <p>Loading...</p>
   </div>
 </div>
