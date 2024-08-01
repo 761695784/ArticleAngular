@@ -7,5 +7,6 @@ export const appRoutes: Routes = [
   { path: '', component: ListeArticleComponent },
   { path: 'article/:id', component: DetailArticleComponent },
   { path: 'add', component: AddUpdateArticleComponent },
-  { path: 'edit/:id', component: AddUpdateArticleComponent }
+  { path: 'edit/:id', component: AddUpdateArticleComponent },
+  { path: 'article-details/:id', component: DetailArticleComponent }
 ];

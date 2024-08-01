@@ -6,7 +6,11 @@ import { RouterModule } from '@angular/router';
 import { ArticleService } from '../services/article.service';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
+interface Article {
+  id: number;
+  title: string;
+  body: string;
+}
 @Component({
   selector: 'app-liste-article',
   standalone: true,
@@ -15,7 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrls: ['./liste-article.component.css']
 })
 export class ListeArticleComponent implements OnInit {
-  articles: any[] = [];
+  articles: Article [] = [];
 
   constructor(private articleService: ArticleService) { }
 
@@ -28,10 +32,10 @@ export class ListeArticleComponent implements OnInit {
     this.articleService.getArticle(1).subscribe(data => {
       console.log(data);
     });
-
-
-
-
-
+  }
+   deleteArticle(id: number): void {
+    this.articleService.deleteArticle(id).subscribe(() => {
+      this.articles = this.articles.filter(article => article.id !== id);
+    });
   }
 }

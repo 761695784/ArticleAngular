@@ -1,0 +1,71 @@
+  /* Ajouts de CSS pour rendre le formulaire plus beau */
+  .container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-label {
+    font-weight: bold;
+    color: #333;
+  }
+
+  .form-control {
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .btn-primary {
+    background-color: #4CAF50;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background-color: #3e8e41;
+  }
+
+  .text-danger {
+    color: #f44336;
+  }
+
+  /* Ajouts de CSS pour rendre la liste d'articles plus belle */
+  .card {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+
+  .card-title {
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .card-text {
+    font-size: 16px;
+  }
+
+  .card-footer {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+  }
+
+  .btn-group {
+    margin-bottom: 10px;
+  }
+
+  .btn-sm {
+    padding: 5px 10px;
+    font-size: 14px;
+  }

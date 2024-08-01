@@ -4,6 +4,7 @@ import { ArticleService } from '../services/article.service';
 import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 // Déclaration de l'interface
@@ -16,7 +17,7 @@ interface Article {
 @Component({
   selector: 'app-add-update-article',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, FormsModule],
+  imports: [ReactiveFormsModule, CommonModule, FormsModule,RouterModule],
   templateUrl: './add-update-article.component.html',
   styleUrls: ['./add-update-article.component.css']
 })
@@ -67,9 +68,22 @@ export class AddUpdateArticleComponent implements OnInit {
       });
     } else {
       this.articleService.createArticle(this.articleForm.value).subscribe((newArticle) => {
+        console.log('Article ajouté :', newArticle); // Vérifie les données ajoutées
         this.articles.unshift(newArticle); // Pour démonstration, ajouter l'article au début de la liste
         this.router.navigate(['/']);
       });
     }
   }
+
+  loadArticles() {
+    this.articleService.getArticles().subscribe(data => {
+      this.articles = data;
+    });
+  }
+
+  viewArticleDetails(id: number) {
+    this.router.navigate(['/article-details', id]);
+  }
+
 }
+
