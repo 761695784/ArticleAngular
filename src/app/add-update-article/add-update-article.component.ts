@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 // Déclaration de l'interface
 interface Article {
   id: number;
@@ -20,9 +21,11 @@ interface Article {
   styleUrls: ['./add-update-article.component.css']
 })
 export class AddUpdateArticleComponent implements OnInit {
+  articles: Article[] = [];
   articleForm: FormGroup;
   isEditMode = false;
   articleId: number | null = null;
+
 
   constructor(
     private fb: FormBuilder,
@@ -37,6 +40,12 @@ export class AddUpdateArticleComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.articleForm = this.fb.group({
+      title: ['', Validators.required],
+      body: ['', Validators.required]
+    });
+
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {
@@ -50,12 +59,15 @@ export class AddUpdateArticleComponent implements OnInit {
   }
 
   onSubmit(): void {
+    console.log('Formulaire soumis :', this.articleForm.valid);
+    console.log('Valeurs du formulaire :', this.articleForm.value);
     if (this.isEditMode && this.articleId) {
       this.articleService.updateArticle(this.articleId, this.articleForm.value).subscribe(() => {
         this.router.navigate(['/']);
       });
     } else {
-      this.articleService.createArticle(this.articleForm.value).subscribe(() => {
+      this.articleService.createArticle(this.articleForm.value).subscribe((newArticle) => {
+        this.articles.unshift(newArticle); // Pour démonstration, ajouter l'article au début de la liste
         this.router.navigate(['/']);
       });
     }
