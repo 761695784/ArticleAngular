@@ -5,6 +5,7 @@ import { ArticleService, Article, Comment } from '../services/article.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-detail-article',
@@ -45,6 +46,7 @@ export class DetailArticleComponent implements OnInit {
 
   deleteArticle(): void {
     if (this.article) {
+      Swal.fire('Success', 'Article deleted successfully!', 'success');
       this.articleService.deleteArticle(this.article.id).subscribe(() => {
         // Redirection ou message de succès
       });

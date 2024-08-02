@@ -40,7 +40,12 @@
               (click)="viewArticleDetails(article.id)">
               Voir détails
             </button>
-            <button class="btn btn-sm btn-outline-secondary">Modifier</button>
+            <button routerLink="add-update-article/: id"  class="btn btn-sm btn-outline-success">Modifier</button>
+            <button
+              class="btn btn-sm btn-outline-danger"
+              (click)="deleteArticle(article.id)">
+              Supprimer
+            </button>
           </div>
         </div>
       </div>
