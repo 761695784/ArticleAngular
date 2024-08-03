@@ -10,6 +10,6 @@ export const appRoutes: Routes = [
   { path: 'add', component: AddUpdateArticleComponent },
   { path: 'edit/:id', component: AddUpdateArticleComponent },
   { path: 'article-details/:id', component: DetailArticleComponent },
-  { path: 'add-update-article/: id', component: ListeArticleComponent }
+  { path: 'add-update-article/: id', component: AddUpdateArticleComponent  }
   // this.router.navigate(['/add-update-article', id]);
 ];

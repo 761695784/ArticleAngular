@@ -14,10 +14,10 @@
       </div>
     </div>
     <div class="form-group mb-3">
-      <label for="content" class="form-label">Content</label>
-      <textarea id="content" class="form-control" formControlName="body"></textarea>
-      <div *ngIf="articleForm.controls['content']?.invalid && (articleForm.controls['content'].dirty || articleForm.controls['content'].touched)">
-        <small class="text-danger" *ngIf="articleForm.controls['content']">Content is required.</small>
+      <label for="body" class="form-label">Content</label>
+      <textarea id="body" class="form-control" formControlName="body"></textarea>
+      <div *ngIf="articleForm.controls['body']?.invalid && (articleForm.controls['body'].dirty || articleForm.controls['body'].touched)">
+        <small class="text-danger" *ngIf="articleForm.controls['body']">Content is required.</small>
       </div>
     </div>
     <button type="submit" class="btn btn-primary " [disabled]="articleForm.invalid">{{ isEditMode ? 'Update' : 'Add' }}  Ajouter  </button>
@@ -40,7 +40,7 @@
               (click)="viewArticleDetails(article.id)">
               Voir détails
             </button>
-            <button routerLink="add-update-article/: id"  class="btn btn-sm btn-outline-success">Modifier</button>
+            <button [routerLink]="['/edit', article.id]" class="btn btn-sm btn-outline-success">Modifier</button> 
             <button
               class="btn btn-sm btn-outline-danger"
               (click)="deleteArticle(article.id)">

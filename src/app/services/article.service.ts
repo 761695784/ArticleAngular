@@ -20,8 +20,14 @@ export interface Comment {
   providedIn: 'root'
 })
 export class ArticleService {
+ private apiUrl = 'https://jsonplaceholder.typicode.com/posts';
 
-  private apiUrl = 'https://jsonplaceholder.typicode.com/posts';
+
+
+  //private apiUrl = 'http://127.0.0.1:8000/api/articles';
+
+
+
   private commentsUrl = 'https://jsonplaceholder.typicode.com/comments';
 
   constructor(private http: HttpClient) { }
@@ -49,4 +55,6 @@ export class ArticleService {
   deleteArticle(id: number): Observable<Article> {
     return this.http.delete<Article>(`${this.apiUrl}/${id}`);
   }
+
+  
 }

@@ -88,6 +88,8 @@ export class AddUpdateArticleComponent implements OnInit {
           this.articles.unshift(newArticle); // Ajoute l'article au début de la liste
           Swal.fire('Success', 'Article ajouté avec succès !', 'success');
           this.router.navigate(['/']);
+          this.articleForm.reset(); // Vide le formulaire après mise à jour
+
         },
         error: (err) => {
           Swal.fire('Error', 'Error adding article.', 'error');
@@ -140,14 +142,4 @@ export class AddUpdateArticleComponent implements OnInit {
   editArticle(id: number): void {
     this.router.navigate(['/add-update-article', id]);
   }
-  // ajouter article
-  addArticle(): void {
-    this.router.navigate(['/add-update-article']);
-  }
-  // voir détail d'article
-  viewArticle(id: number): void {
-    this.router.navigate(['/article-details', id]);
-  }
-
-
 }
